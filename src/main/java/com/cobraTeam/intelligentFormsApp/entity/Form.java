@@ -2,10 +2,8 @@ package com.cobraTeam.intelligentFormsApp.entity;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+import lombok.*;
 
 import javax.persistence.Id;
 import java.util.List;
@@ -20,12 +18,12 @@ public class Form {
     @GeneratedValue
     private String id;
 
+    @PartitionKey
     private String title;
 
     private List<DynamicFields> fields;
 
 
-    @AllArgsConstructor
     @Setter
     @Getter
     public static class DynamicFields {
@@ -35,11 +33,11 @@ public class Form {
 
         private boolean isMandatory;
 
-        private FieldType fieldType;
+        private String fieldType;
 
     }
 
-    public enum FieldType {
-        text, singlechoice
-    }
+//    public enum FieldType {
+//        text, singleChoice
+//    }
 }

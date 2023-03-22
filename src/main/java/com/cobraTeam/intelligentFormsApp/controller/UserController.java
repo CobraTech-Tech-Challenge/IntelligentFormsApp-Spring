@@ -20,15 +20,23 @@ public class UserController {
 
     private final UserService userService;
 
+    private final UserRepository userRepository;
+
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<User> createNewUser(@RequestBody User user) {
-        return ResponseEntity.ok(userService.create(user));
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@RequestBody User user) {
+        return ResponseEntity.ok(userRepository.save(user));
     }
+
+//    @PostMapping("/create")
+//    public ResponseEntity<User> createNewUser(@RequestBody User user) {
+//        return ResponseEntity.ok(userService.create(user));
+//    }
 
     @GetMapping("/getAllUsers")
     public ResponseEntity<List<User>> getAllUsers() {

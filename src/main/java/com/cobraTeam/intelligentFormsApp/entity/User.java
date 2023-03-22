@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,28 +17,29 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private String id;
 
-    private String firstName;
-
-    @PartitionKey
-    private String lastName;
-
-    private int age;
-
-    private String emailAddress;
-
-    private String address;
+    private String fullName;
 
     private String role;
 
-    public User(String firstName, String lastName, int age, String emailAddress, String address, String role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.emailAddress = emailAddress;
-        this.address = address;
+    private String fiscalCode;
+
+    private String address;
+
+    private String emailAddress;
+
+    private String password;
+
+
+    public User() {
+        this.id = UUID.randomUUID().toString();
+        this.fullName = fullName;
         this.role = role;
+        this.fiscalCode = fiscalCode;
+        this.address = address;
+        this.emailAddress = emailAddress;
+        this.password = password;
     }
 }
